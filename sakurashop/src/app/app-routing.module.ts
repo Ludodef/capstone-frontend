@@ -13,7 +13,8 @@ const routes: Routes = [
     loadChildren: () => import('./contatti/contatti/contatti.module').then(m => m.ContattiModule) },
   { path: 'profilo',
     loadChildren: () => import('./profilo/profilo/profilo.module').then(m => m.ProfiloModule) },
-  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) }];
+  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  { path: 'carrello', loadChildren: () => import('./carrello/carrello/carrello.module').then(m => m.CarrelloModule) }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
