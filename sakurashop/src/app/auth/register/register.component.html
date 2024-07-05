@@ -1,11 +1,15 @@
 <div class="container">
-<form>
+<form class="col-6">
 
   <input type="text" name="nome" [(ngModel)]="registerData.firstName" class="form-control" placeholder="Nome">
   <input type="text" name="cognome" [(ngModel)]="registerData.lastName" class="form-control" placeholder="Cognome" >
   <input type="text" name="username" [(ngModel)]="registerData.username" class="form-control" placeholder="Username">
   <input type="email" name="email" [(ngModel)]="registerData.email" class="form-control" placeholder="Email">
   <input type="password" name="password" [(ngModel)]="registerData.password" class="form-control" placeholder="Password">
+  <div class="row form-check">
+    <input type="checkbox" name="role" [(ngModel)]="admin" (change)="onRoleChange($event)" class="form-check-input col-3">
+  <label class="form-check-label" for="admin">Amministratore</label>
+</div>
 
 <button (click)="signUp()" class="btn btn-success">Registrati</button>
 </form>

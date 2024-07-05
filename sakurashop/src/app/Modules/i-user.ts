@@ -6,6 +6,12 @@ export interface IUser {
   email:string,
   password:string,
   avatar?:string,
-  role?:string,
+  roles:IRole[],
 
+
+}
+
+export interface IRole{
+
+  roleType:string,
 }
