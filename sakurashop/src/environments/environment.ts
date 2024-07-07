@@ -7,6 +7,10 @@ export const environment = {
   photoUrl:'http://localhost:8080/users/{username}/avatar',
   viewPhotoUrl:'http://localhost:8080/users/{username}/avatar',
 
-  //
 
+
+
+  //libri
+
+  libriUrl:'http://localhost:8080/api/libri'
 };

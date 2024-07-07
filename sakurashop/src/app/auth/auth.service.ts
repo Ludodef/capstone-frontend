@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment.development';
 import { Router } from '@angular/router';
 
 type AccessData = {
-  accessToken: string,
+  token: string,
   user:IUser
 }
 
@@ -21,7 +21,10 @@ export class AuthService {
   authSubject = new BehaviorSubject<IUser | null>(null);
 
   user$ = this.authSubject.asObservable();
-  isLoggedIn$ = this.user$.pipe(map(user => !!user))
+  isLoggedIn$ = this.user$.pipe(map(user => !!user),
+  tap(user => this.syncIsLoggedIn = user))
+
+  syncIsLoggedIn = false;
 
   constructor(private http:HttpClient, private router:Router) {
 
@@ -33,13 +36,14 @@ this.restoreUser()
   loginUrl:string = environment.loginUrl
   adminUrl:string = environment.adminUrl
 
+
   login(loginData:ILoginData): Observable<AccessData>{
     return this.http.post<AccessData>(this.loginUrl, loginData)
     .pipe(tap(data => {
       this.authSubject.next(data.user)
       localStorage.setItem('accessData',JSON.stringify(data))
 
-      this.autoLogout(data.accessToken)
+      this.autoLogout(data.token)
     }))
 
 
@@ -52,10 +56,23 @@ this.restoreUser()
 
   autoLogout(jwt:string){
     const expDate = this.jwtHelper.getTokenExpirationDate(jwt) as Date;
+    if (!expDate) {
+      console.error('Invalid JWT: Missing expiration date');
+      return;
+    }
     const expMs = expDate.getTime() - new Date().getTime();
     setTimeout(() => {
       this.logout()
     },expMs)
+  }
+
+  getAccessToken():string{
+    const userJson = localStorage.getItem('accessData')
+    if(!userJson) return '';
+    const accessData:AccessData = JSON.parse(userJson)
+    //if(this.jwtHelper.isTokenExpired(accessData.accessToken)) return ''
+    return accessData.token
+
   }
 
   register(newUser:Partial<IUser>):Observable<AccessData>{
@@ -71,9 +88,11 @@ this.restoreUser()
     if(!userJson) return;
 
     const accessData:AccessData = JSON.parse(userJson)
-    if(this.jwtHelper.isTokenExpired(accessData.accessToken)) return;
+    if(this.jwtHelper.isTokenExpired(accessData.token)) return;
 
     this.authSubject.next(accessData.user)
-    this.autoLogout(accessData.accessToken)
+    this.autoLogout(accessData.token)
   }
+
+
 }

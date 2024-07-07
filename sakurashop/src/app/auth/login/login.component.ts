@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { ILoginData } from '../../Modules/i-login-data';
+import { LibriService } from '../../libri.service';
 
 @Component({
   selector: 'app-login',
@@ -18,12 +19,17 @@ export class LoginComponent {
 
 
   constructor(private authSvc:AuthService,
-    private router:Router
-  ){}
+    private router:Router,
+    private librisvc:LibriService
+  ){
+
+  }
 
 signIn(){
-  this.authSvc.login(this.loginData).subscribe( data => this.router.navigate(['/']));
+  this.authSvc.login(this.loginData).subscribe( data => {
+    this.router.navigate(['/'])
 
+  });
 
 }
 }

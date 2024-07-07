@@ -3,6 +3,12 @@ import { Component } from '@angular/core';
 import { IUser } from '../../Modules/i-user';
 import { Router } from '@angular/router';
 
+type AccessData = {
+  token: string,
+  user:IUser
+}
+
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -13,14 +19,12 @@ export class RegisterComponent {
   roles: []
  }
 
+
  admin:boolean = false;
 
   constructor(private authSvc:AuthService,
     private router:Router
   ){}
-
-
-
   onRoleChange(event: Event) {
     const checkbox = event.target as HTMLInputElement;
     if (checkbox.checked) {
@@ -42,5 +46,10 @@ export class RegisterComponent {
       }
     }
 
+
   }
+
+
+
+
 
