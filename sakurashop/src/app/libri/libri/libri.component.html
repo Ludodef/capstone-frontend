@@ -1,9 +1,7 @@
 
-<div class="container"></div>
-<div class="flex-wrap row">
-
-  <div class="col-sm-3 mb-3 mb-sm-0">
-    <div class="card" *ngFor="let libro of libri">
+<div class="container">
+  <div class="row gap-2">
+    <div id="card" *ngFor="let libro of libri">
 
       <div class="imgBox">
         <img src={{libro.immagine}} class="mouse">
@@ -17,4 +15,5 @@
 
     </div>
   </div>
-</div>
+  </div>
+

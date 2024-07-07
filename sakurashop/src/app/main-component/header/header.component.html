@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg mb-3 border-bottom border-body" style="background-color:#FDAEC0 ;">
   <div class="container-fluid">
-  <div class="d-flex flex-wrap align-items-center justify-content-between">
+  <div class="d-flex flex-wrap align-items-center justify-content-center w-100">
     <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
       <img src="https://res.cloudinary.com/dfm9lzhxy/image/upload/v1720274936/Default_A_whimsical_logo_of_SakuraShop_crafted_in_a_mix_of_dig_2-removebg-preview_y1bfi1.png" class="logo">
     </a>
@@ -12,15 +12,17 @@
       <li><a class="nav-link px-2 text-white" routerLink="/contatti">Contatti</a></li>
     </ul>
 
-    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-      <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+    <form class="col-3" role="search">
+      <input type="search" class="form-control form-control-light text-bg-light" placeholder="Search..." aria-label="Search">
     </form>
     <div class="text-end">
-    <button class=" btn btn-outline-light" routerLink="/carrello" *ngIf="isUserLoggedIn"><i class="bi bi-cart text-white"></i></button>
+    <button class=" btn btn-light carrello m-2" type="button" routerLink="/carrello" *ngIf="isUserLoggedIn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+      <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+    </svg></button>
 
 
-      <button type="button" class="btn btn-outline-light me-2" routerLink="/auth/login" *ngIf="!isUserLoggedIn">Login</button>
-      <button type="button" class="btn btn-warning" routerLink="/auth/register" *ngIf="!isUserLoggedIn" >Sign-up</button>
+      <button type="button" class="btn btn-light me-2" routerLink="/auth/login" *ngIf="!isUserLoggedIn">Login</button>
+      <button type="button" class="btn btn-info" routerLink="/auth/register" *ngIf="!isUserLoggedIn" >Sign-up</button>
       <button (click)="logOut()" type="button" class="btn btn-danger" *ngIf="isUserLoggedIn">Esci</button>
     </div>
   </div>

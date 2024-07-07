@@ -40,9 +40,9 @@ export class RegisterComponent {
     }
     signUp(){
       if(this.admin){
-        this.authSvc.registerAdmin(this.registerData).subscribe( data => this.router.navigate(['/']));
+        this.authSvc.registerAdmin(this.registerData).subscribe( data => this.router.navigate(['/libri']));
       }else{
-        this.authSvc.register(this.registerData).subscribe( data => this.router.navigate(['/']));
+        this.authSvc.register(this.registerData).subscribe( data => this.router.navigate(['/libri']));
       }
     }
 
