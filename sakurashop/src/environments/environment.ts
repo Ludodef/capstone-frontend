@@ -12,5 +12,7 @@ export const environment = {
 
   //libri
 
-  libriUrl:'http://localhost:8080/api/libri'
+  libriUrl:'http://localhost:8080/api/libri',
+  modificaUrl:'http://localhost:8080/api/libri/update/',
+  eliminaUrl:'http://localhost:8080/api/libri/delete/'
 };

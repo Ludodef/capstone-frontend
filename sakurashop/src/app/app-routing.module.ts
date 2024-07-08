@@ -12,7 +12,8 @@ const routes: Routes = [
   {
     path: 'libri',
     loadChildren: () => import('./libri/libri/libri.module').then(m => m.LibriModule),
-    canActivate:[AuthGuard]
+    canActivate:[AuthGuard],
+    canActivateChild:[AuthGuard]
   },
 
 

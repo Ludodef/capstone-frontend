@@ -1,0 +1,43 @@
+
+<form>
+
+  <input type="text" name="titolo"
+  [(ngModel)]="libro.titolo"
+  class="form-control" placeholder="Titolo">
+
+  <input type="number" name="prezzo"
+  [(ngModel)] = "libro.prezzo"
+  class="form-control" placeholder="Prezzo">
+
+  <input type="text" name="trama"
+  [(ngModel)]="libro.trama"
+  class="form-control" placeholder="Trama">
+
+  <input type="text" name="isbn"
+  [(ngModel)]="libro.isbn"
+  class="form-control" placeholder="Isbn">
+
+  <input type="number" name="numero-pagine"
+  [(ngModel)] = "libro.numeroPagine"
+  class="form-control" placeholder="Numero pagine">
+
+  <input type="text" name="autore"
+  [(ngModel)]="libro.autore"
+  class="form-control" placeholder="Autore">
+
+
+
+  <input type="text" name="editore"
+  [(ngModel)]="libro.casaEditrice"
+  class="form-control" placeholder="Editore">
+
+  <input type="text" name="genere" [(ngModel)]="libro.genere" class="form-control" placeholder="Editore" >
+
+<input type="text" name="Saga" [(ngModel)]="libro.saga" class="form-control" placeholder="Saga" >
+<input type="text" name="genere" [(ngModel)]="libro.disponibile" class="form-control" placeholder="disponibilita" >
+
+<input type="image" name="copertina" [(ngModel)]="libro.immagine" class="form-control" placeholder="immagine">
+
+  <button (click)="modificaLibro()"  class="btn btn-primary">Modifica</button>
+
+</form>

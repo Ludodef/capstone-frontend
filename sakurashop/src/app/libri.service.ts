@@ -22,6 +22,8 @@ constructor(
 
 
  apiUrl:string =environment.libriUrl
+ modificaUrl:string = environment.modificaUrl
+ eliminaUrl:string = environment.eliminaUrl
 
  getAll(): Observable<ILibri[]>{
   const token = this.authSvc.getAccessToken();
@@ -38,7 +40,7 @@ constructor(
  }
 
  update(libro:ILibri){
-  return this.http.put<ILibri>(this.apiUrl+'/'+libro.id, libro)
+  return this.http.put<ILibri>(`${this.modificaUrl}${libro.id}`, libro)
   .pipe(tap(responseLibri =>{
     const index = this.libri.findIndex(u => u.id === libro.id)
     this.libri.splice(index,1,responseLibri)
@@ -55,7 +57,7 @@ constructor(
  }
 
  delete(id:number){
-  return this.http.delete<ILibri>(this.apiUrl+'/'+id)
+  return this.http.delete<ILibri>(`${this.eliminaUrl}${id}`)
   .pipe(tap(() => {
     const index = this.libri.findIndex(u => u.id === id)
     this.libri.splice(index,1)
