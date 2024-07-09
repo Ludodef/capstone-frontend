@@ -10,7 +10,7 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class LibriComponent {
   libri:ILibri[] = [];
-  isAdmin$ = this.authSvc.isAdmin$;
+  isUser$ = this.authSvc.isUser$;
 
 
   constructor(

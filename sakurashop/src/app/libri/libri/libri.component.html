@@ -2,7 +2,7 @@
 <div class="container">
   <div  class="d-flex flex-row-reverse">
 
-    <button *ngIf="(authSvc.isAdmin$ |async)" routerLink="/libri/add" class="btn btn-success">Aggiungi libro</button>
+    <button *ngIf="isUser$ |async" routerLink="/libri/add" class="btn btn-success">Aggiungi libro</button>
   </div>
   <div class="row gap-2">
     <div id="card" *ngFor="let libro of libri">
@@ -14,7 +14,7 @@
       <div class="contentBox">
         <h3><a [routerLink]="['/libri/dettaglio', libro.id]">{{libro.titolo}}</a></h3>
         <h2 class="price">{{libro.prezzo}} €</h2>
-        <div *ngIf="(authSvc.isAdmin$ |async)">
+        <div *ngIf="isUser$ |async">
 
           <div class="d-flex align-items-center justify-content-between">
             <a [routerLink]="['/libri/edit', libro.id]"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
