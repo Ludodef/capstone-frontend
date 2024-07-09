@@ -13,6 +13,7 @@ import { EditComponent } from './libri/edit/edit.component';
 import { AddComponent } from './libri/add/add.component';
 import { AuthService } from './auth/auth.service';
 import { LibriService } from './libri.service';
+import { DettaglioLibriComponent } from './libri/dettaglio-libri/dettaglio-libri.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { LibriService } from './libri.service';
     HeaderComponent,
     FooterComponent,
     EditComponent,
-    AddComponent
+    AddComponent,
+    DettaglioLibriComponent
   ],
   imports: [
     BrowserModule,

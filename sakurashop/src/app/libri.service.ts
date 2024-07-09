@@ -42,9 +42,11 @@ constructor(
  update(libro:ILibri){
   return this.http.put<ILibri>(`${this.modificaUrl}${libro.id}`, libro)
   .pipe(tap(responseLibri =>{
-    const index = this.libri.findIndex(u => u.id === libro.id)
+    const index = this.libri.findIndex(u => u.id === libro.id);
+    if(index !== -1){
     this.libri.splice(index,1,responseLibri)
     this.libriSubject.next(this.libri)
+    }
   }))
  }
 
