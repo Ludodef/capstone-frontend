@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ILibri } from '../../Modules/i-libri';
 import { LibriService } from '../../libri.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-libri',
@@ -9,9 +10,12 @@ import { LibriService } from '../../libri.service';
 })
 export class LibriComponent {
   libri:ILibri[] = [];
+  isAdmin$ = this.authSvc.isAdmin$;
+
 
   constructor(
-    private libriSvc:LibriService
+    private libriSvc:LibriService,
+    public authSvc:AuthService
   ){}
 
 

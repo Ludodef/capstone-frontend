@@ -93,6 +93,13 @@ this.restoreUser()
     this.authSubject.next(accessData.user)
     this.autoLogout(accessData.token)
   }
+  hasRole(role: string): Observable<boolean> {
+    return this.user$.pipe(
+      map(user => user ? user.roles.some(r => r.roleType === role) : false)
+    );
+  }
 
+  isUser$ = this.hasRole('user');
+  isAdmin$ = this.hasRole('admin');
 
 }
