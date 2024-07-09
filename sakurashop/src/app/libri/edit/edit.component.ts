@@ -28,6 +28,9 @@ export class EditComponent {
 }
 
 modificaLibro(){
-  this.libriSvc.update(this.libro).subscribe(() => alert('Modificato'))
+
+    this.libriSvc.update(this.libro).subscribe(() => alert('Modificato'))
+
+
 }
 }

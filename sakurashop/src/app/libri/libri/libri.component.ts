@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ILibri } from '../../Modules/i-libri';
 import { LibriService } from '../../libri.service';
 import { AuthService } from '../../auth/auth.service';
+import { CarrelloService } from '../../carrello.service';
+import { StatoLibroService } from '../../stato-libro.service';
 
 @Component({
   selector: 'app-libri',
@@ -11,21 +13,39 @@ import { AuthService } from '../../auth/auth.service';
 export class LibriComponent {
   libri:ILibri[] = [];
   isUser$ = this.authSvc.isUser$;
+  currentUser:any
 
 
   constructor(
     private libriSvc:LibriService,
-    public authSvc:AuthService
+    public authSvc:AuthService,
+    private carrelloSvc:CarrelloService,
+    private stateSvc:StatoLibroService
   ){}
 
 
   ngOnInit(){
     this.libriSvc.libri$.subscribe(libri =>this.libri = libri)
-    this.libriSvc.getAll().subscribe()
+    this.libriSvc.getAll().subscribe();
+    this.currentUser = this.authSvc.getUserProfile()
   }
 
 
   elimina(id:number){
     this.libriSvc.delete(id).subscribe()
   }
+
+  isUserLibro(libro:ILibri):boolean{
+    return this.currentUser?.id === libro.idUser
+  }
+  addToCarrello(libro:ILibri):void{
+    if(libro.quantita > 0){
+      this.carrelloSvc.addToCarrello(libro);
+
+    }else{
+      console.log('libro non disponibile')
+    }
+  }
+
+
 }

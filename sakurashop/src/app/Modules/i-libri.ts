@@ -1,3 +1,5 @@
+import { IUser } from "./i-user";
+
 export interface ILibri {
   id:number;
   titolo:string;
@@ -12,6 +14,8 @@ export interface ILibri {
   isbn:string;
   numeroPagine:number;
   disponibile:boolean;
+  idUser?:number;
+  quantita:number
 }
 
 export interface ITipo{

@@ -102,4 +102,13 @@ this.restoreUser()
   isUser$ = this.hasRole('user');
   isAdmin$ = this.hasRole('admin');
 
+
+  getUserProfile(): IUser | null {
+    const userJson = localStorage.getItem('accessData');
+    if (!userJson) return null;
+
+    const accessData: AccessData = JSON.parse(userJson);
+    return accessData.user;
+  }
+
 }

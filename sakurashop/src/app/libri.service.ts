@@ -43,10 +43,10 @@ constructor(
   return this.http.put<ILibri>(`${this.modificaUrl}${libro.id}`, libro)
   .pipe(tap(responseLibri =>{
     const index = this.libri.findIndex(u => u.id === libro.id);
-    if(index !== -1){
+
     this.libri.splice(index,1,responseLibri)
     this.libriSubject.next(this.libri)
-    }
+
   }))
  }
 
@@ -66,4 +66,16 @@ constructor(
     this.libriSubject.next(this.libri)
   }))
  }
+
+ updateLibroQuantity(id: number, quantita: number): Observable<ILibri> {
+  const payload = { quantita };
+  return this.http.put<ILibri>(`${this.apiUrl}/${id}/quantity`, payload)
+    .pipe(tap(updatedLibro => {
+      const index = this.libri.findIndex(libro => libro.id === id);
+      if (index !== -1) {
+        this.libri[index] = updatedLibro;
+        this.libriSubject.next(this.libri);
+      }
+    }));
+}
 }
