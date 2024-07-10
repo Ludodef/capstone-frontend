@@ -1,27 +1,30 @@
 import { Injectable } from '@angular/core';
 import { ILibri } from './Modules/i-libri';
+import { StatoLibroService } from './stato-libro.service';
+import { AuthService } from './auth/auth.service';
+import { LibriService } from './libri.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarrelloService {
+  private carrello: ILibri[] = [];
 
-  private carrello:ILibri[]=[];
-
-
-  getCarrello():ILibri[]{
-    return this.carrello
-  }
-  addToCarrello(carrello:ILibri):void{
-    this.carrello.push(carrello)
+  getCarrello(): ILibri[] {
+    return this.carrello;
   }
 
-  clearCarrello():void{
-    this.carrello=[]
+  addToCarrello(libro: ILibri): void {
+    this.carrello.push(libro);
   }
-  purchaseCart():ILibri[]{
-    const purchasedBooks = [...this.carrello]
-    this.clearCarrello()
-    return purchasedBooks
+
+  clearCarrello(): void {
+    this.carrello = [];
+  }
+
+  purchaseCart(): ILibri[] {
+    const purchasedBooks = [...this.carrello];
+    this.clearCarrello();
+    return purchasedBooks;
   }
 }

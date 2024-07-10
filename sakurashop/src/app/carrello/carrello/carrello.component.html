@@ -1,1 +1,22 @@
-<p>carrello works!</p>
+<div class="product-list">
+  <div class="card" *ngFor="let libri of carrello">
+    <div class="card-img">
+      <img [src]="libri.immagine" alt="Product Image" class="img-fluid">
+    </div>
+    <div class="card-info">
+      <p class="text-title">{{ libri.titolo }}</p>
+      <p class="text-body">{{ libri.trama }}</p>
+    </div>
+    <div class="card-footer">
+      <div class="footer-content">
+        <span class="text-title">{{ libri.prezzo }} €</span>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cart-buttons">
+  <button (click)="acquistaCarrello()" class="btn">Acquista</button>
+  <button (click)="clearCarrello()" class="btn btn-danger">Svuota carrello</button>
+</div>

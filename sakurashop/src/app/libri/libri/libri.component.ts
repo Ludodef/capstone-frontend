@@ -35,9 +35,6 @@ export class LibriComponent {
     this.libriSvc.delete(id).subscribe()
   }
 
-  isUserLibro(libro:ILibri):boolean{
-    return this.currentUser?.id === libro.idUser
-  }
   addToCarrello(libro:ILibri):void{
     if(libro.quantita > 0){
       this.carrelloSvc.addToCarrello(libro);

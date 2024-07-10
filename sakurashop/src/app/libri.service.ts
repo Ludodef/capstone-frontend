@@ -78,4 +78,13 @@ constructor(
       }
     }));
 }
+
+updateQuantita(id: number, quantita: number): Observable<ILibri> {
+  const libro = this.getById(id);
+  if (libro) {
+    libro.quantita = quantita;
+    return this.update(libro);
+  }
+  return new Observable<ILibri>(); // Restituisce un observable vuoto se il libro non viene trovato
+}
 }
