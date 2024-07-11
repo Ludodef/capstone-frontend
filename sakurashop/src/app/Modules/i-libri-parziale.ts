@@ -1,19 +1,13 @@
-import { IUser } from "./i-user";
-
-export interface ILibri {
+export interface ILibriParziale {
   id:number;
   titolo:string;
-  genere:string;
   autore:string;
+  genere:string;
   casaEditrice:string;
   saga:string;
   prezzo:number;
   trama:string;
-  immagine:string[];
   isbn:string;
   numeroPagine:number;
   quantita:number
 }
-
-
-

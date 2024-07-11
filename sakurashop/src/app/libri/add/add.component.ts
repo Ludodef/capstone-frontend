@@ -10,11 +10,12 @@ import { LibriService } from '../../libri.service';
 export class AddComponent {
 
   newLibro:Partial <ILibri> = {}
+  files: File[] = [];
 
   constructor(private libroSvc:LibriService){}
 
   aggiungiLibro(){
-    this.libroSvc.create(this.newLibro).subscribe(() =>{
+    this.libroSvc.create(this.newLibro,this.files ).subscribe(() =>{
       this.newLibro = {}
     })
   }

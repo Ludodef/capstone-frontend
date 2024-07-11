@@ -4,6 +4,7 @@ import { BehaviorSubject, catchError, Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment.development';
 import { AuthService } from './auth/auth.service';
+import { ILibriParziale } from './Modules/i-libri-parziale';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,7 @@ constructor(
  apiUrl:string =environment.libriUrl
  modificaUrl:string = environment.modificaUrl
  eliminaUrl:string = environment.eliminaUrl
+ creaUrl = environment.creaUrl
 
  getAll(): Observable<ILibri[]>{
   const token = this.authSvc.getAccessToken();
@@ -50,8 +52,13 @@ constructor(
   }))
  }
 
- create(libro:Partial<ILibri>){
-  return this.http.post<ILibri>(this.apiUrl,libro)
+ create(libro:ILibriParziale , files:File[]): Observable<ILibri> {
+  const formData = new FormData();
+  files.forEach((file,index)) => {
+    formData.append('file', file ,file.name);
+  });
+  formData.append('libro', JSON.stringify(libro))
+  return this.http.post<ILibri>(this.creaUrl,formData)
   .pipe(tap(responseLibri => {
     this.libri.push(responseLibri)
     this.libriSubject.next(this.libri)
