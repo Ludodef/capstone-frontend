@@ -25,7 +25,7 @@ constructor(
  apiUrl:string =environment.libriUrl
  modificaUrl:string = environment.modificaUrl
  eliminaUrl:string = environment.eliminaUrl
- creaUrl = environment.creaUrl
+ creaUrl:string = environment.creaUrl
 
  getAll(): Observable<ILibri[]>{
   const token = this.authSvc.getAccessToken();
@@ -52,18 +52,19 @@ constructor(
   }))
  }
 
- create(libro:ILibriParziale , files:File[]): Observable<ILibri> {
+ create(libro: ILibriParziale, files: File[]): Observable<ILibri> {
   const formData = new FormData();
-  files.forEach((file,index)) => {
-    formData.append('file', file ,file.name);
+  files.forEach((file,index) => {
+    formData.append('file', file, file.name);
   });
-  formData.append('libro', JSON.stringify(libro))
-  return this.http.post<ILibri>(this.creaUrl,formData)
-  .pipe(tap(responseLibri => {
-    this.libri.push(responseLibri)
-    this.libriSubject.next(this.libri)
-  }))
- }
+  formData.append('libri', JSON.stringify(libro));
+
+  return this.http.post<ILibri>(this.creaUrl, formData)
+    .pipe(tap(responseLibri => {
+      this.libri.push(responseLibri);
+      this.libriSubject.next(this.libri);
+    }));
+}
 
  delete(id:number){
   return this.http.delete<ILibri>(`${this.eliminaUrl}${id}`)

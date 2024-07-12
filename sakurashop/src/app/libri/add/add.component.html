@@ -43,9 +43,9 @@
   <input type="text" name="Saga" [(ngModel)]="newLibro.saga" class="form-control" placeholder="Saga" >
 
 
-  <input type="image" name="copertina" [(ngModel)]="newLibro.immagine" class="form-control" placeholder="immagine">
+  <input type="file" name="copertina" class="form-control"  (change)="onFileChange($event)" multiple placeholder="immagine">
 
-  <button (click)="aggiungiLibro()"  class="btn btn-primary">Modifica</button>
+  <button (click)="aggiungiLibro()"  class="btn btn-primary">Aggiungi libro</button>
 
 </form>
 

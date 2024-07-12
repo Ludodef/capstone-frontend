@@ -1,7 +1,7 @@
 <h1>Dettagli</h1>
 <h2>{{libro?.titolo}}</h2>
 <h3>Di:{{libro?.autore}}</h3>
-
+<img [src]="libro?.immagine" alt="">
 
 <p>{{libro?.genere}}</p>
 <p>{{libro?.saga}}</p>
@@ -14,4 +14,4 @@
 
 <h2>{{libro?.prezzo | currency: 'EUR'}} </h2>
 
-<button class="btn btn-primary">Acquista</button>
+

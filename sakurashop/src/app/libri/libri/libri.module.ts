@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { LibriRoutingModule } from './libri-routing.module';
 import { LibriComponent } from './libri.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,9 @@ import { LibriComponent } from './libri.component';
   ],
   imports: [
     CommonModule,
-    LibriRoutingModule
+    LibriRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class LibriModule { }

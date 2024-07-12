@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { ILibri } from '../../Modules/i-libri';
 import { LibriService } from '../../libri.service';
@@ -12,12 +13,22 @@ export class AddComponent {
   newLibro:Partial <ILibri> = {}
   files: File[] = [];
 
-  constructor(private libroSvc:LibriService){}
+  constructor(private libroSvc:LibriService,
+    private router:Router
+  ){}
 
-  aggiungiLibro(){
-    this.libroSvc.create(this.newLibro,this.files ).subscribe(() =>{
-      this.newLibro = {}
-    })
+  aggiungiLibro() {
+    this.libroSvc.create(this.newLibro as ILibri, this.files).subscribe(() => {
+      this.newLibro = {};
+      this.files = [];
+      this.router.navigate(['/libri']);
+    });
+  }
+
+  onFileChange(event: any) {
+    if (event.target.files.length > 0) {
+      this.files = Array.from(event.target.files);
+    }
   }
 
 }

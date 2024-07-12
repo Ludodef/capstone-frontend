@@ -1,5 +1,4 @@
 export interface ILibriParziale {
-  id:number;
   titolo:string;
   autore:string;
   genere:string;
