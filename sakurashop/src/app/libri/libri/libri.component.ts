@@ -4,6 +4,7 @@ import { LibriService } from '../../libri.service';
 import { AuthService } from '../../auth/auth.service';
 import { CarrelloService } from '../../carrello.service';
 import { StatoLibroService } from '../../stato-libro.service';
+import { IUser } from '../../Modules/i-user';
 
 @Component({
   selector: 'app-libri',
@@ -12,8 +13,9 @@ import { StatoLibroService } from '../../stato-libro.service';
 })
 export class LibriComponent {
   libri:ILibri[] = [];
-  isUser$ = this.authSvc.isUser$;
+  user: IUser | null = null;;
   currentUser:any
+
 
 
   constructor(
@@ -27,7 +29,12 @@ export class LibriComponent {
   ngOnInit(){
     this.libriSvc.libri$.subscribe(libri =>this.libri = libri)
     this.libriSvc.getAll().subscribe();
-    this.currentUser = this.authSvc.getUserProfile()
+    this.currentUser = this.authSvc.getUserProfile();
+    this.authSvc.user$.subscribe(user => {
+      this.user = user;
+      console.log('User roles:', user?.roles); // Log per debug
+    });
+
   }
 
 
