@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ILibri } from './Modules/i-libri';
-import { BehaviorSubject, catchError, Observable, tap } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, catchError, Observable, of, tap } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../environments/environment.development';
 import { AuthService } from './auth/auth.service';
 import { ILibriParziale } from './Modules/i-libri-parziale';
@@ -94,5 +94,9 @@ updateQuantita(id: number, quantita: number): Observable<ILibri> {
     return this.update(libro);
   }
   return new Observable<ILibri>(); // Restituisce un observable vuoto se il libro non viene trovato
+}
+
+searchByTitolo(titolo: string): Observable<ILibri[]> {
+  return this.http.get<ILibri[]>(`${this.apiUrl}/search`, { params: { titolo } });
 }
 }
