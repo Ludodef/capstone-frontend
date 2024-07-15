@@ -1,8 +1,9 @@
 
 <div class="container">
+  <h1>I nostri libri</h1>
   <div  class="d-flex flex-row-reverse">
 
-    <button *ngIf="user && user.roles[0].roleType == 'ADMIN'" routerLink="/libri/add" class="btn btn-success">Aggiungi libro</button>
+    <button *ngIf="user && user.roles[0].roleType == 'ADMIN'" routerLink="/libri/add" class="btn btn-success mb-2">Aggiungi libro</button>
   </div>
   <div class="row gap-2">
     <div id="card" *ngFor="let libro of libri">

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import { LibriService } from '../../libri.service';
 import { ILibri } from '../../Modules/i-libri';
@@ -13,6 +13,7 @@ export class HeaderComponent {
   titolo: string = '';
   libroRicercato: ILibri[]= [];
   errore: string | null = null;
+  showResults = false;
 
   constructor(private AuthSvc:AuthService, private libriSvc:LibriService){}
   ngOnInit(){
@@ -43,4 +44,21 @@ export class HeaderComponent {
     }
   }
 
+
+  onSearch(event: Event) {
+    this.showResults = true;
+  }
+
+  closeSearchResults() {
+    this.showResults = false;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClick(event: MouseEvent) {
+    const searchResults = document.getElementById('searchResults');
+    if (searchResults && !searchResults.contains(event.target as Node) && event.target !== document.getElementById('searchInput')) {
+      this.closeSearchResults();
+    }
+  }
 }
+

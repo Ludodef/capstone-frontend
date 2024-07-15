@@ -12,14 +12,20 @@ import { StatoLibroService } from '../../stato-libro.service';
 export class CarrelloComponent {
 
   carrello:ILibri[]= [];
+  totale: number = 0;
 
   constructor (private librisvc:LibriService, private carrelloSvc:CarrelloService,private statoLibroSvc:StatoLibroService){}
 
   ngOnInit(){
     this.carrello = this.carrelloSvc.getCarrello();
+    this.calcolaTotale();
 
 
   }
+  calcolaTotale(): void {
+    this.totale = this.carrello.reduce((acc, libri) => acc + libri.prezzo, 0);
+  }
+
 
   clearCarrello():void{
     this.carrelloSvc.clearCarrello();

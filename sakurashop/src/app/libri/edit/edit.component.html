@@ -1,4 +1,6 @@
+<div class="container">
 
+<h2>Modifica libro</h2>
 <form>
 
   <input type="text" name="titolo"
@@ -38,12 +40,8 @@
 <input type="text" name="Saga" [(ngModel)]="libro.saga" class="form-control" placeholder="Saga" >
 
 
-<input type="image" name="copertina" [(ngModel)]="libro.immagine" class="form-control" placeholder="immagine">
-
   <button (click)="modificaLibro()"  class="btn btn-primary">Modifica</button>
 
 </form>
 
-<ng-template #loading>
-  <p>Caricamento...</p>
-</ng-template>
+</div>

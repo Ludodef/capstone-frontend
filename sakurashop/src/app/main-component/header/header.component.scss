@@ -2,3 +2,38 @@
   width: 80px;
 }
 
+.searchbar{
+  margin-left: -179px;
+  margin-bottom: -69px;
+  margin-top: 9px;
+}
+
+.searchbar-button{
+  margin-left: 2px;
+  margin-bottom: -78px;
+  margin-top: 1px;
+  cursor: pointer;
+}
+
+.search-results{
+  background-color: white;
+  border: 1px solid #FDAEC0 ;
+  border-radius: 5px;
+  position: absolute;
+  top: 72px;
+  right: 148px ;
+  width: 350px;
+  height: 300px;
+  z-index: 1000;
+}
+
+.search-group{
+  position: relative;
+}
+.close-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}

@@ -92,7 +92,7 @@ body {
 
 #card .contentBox .price {
   font-size: 24px;
-  color: black;
+  color: #FDAEC0;
   font-weight: 700;
   letter-spacing: 1px;
 }
@@ -115,6 +115,14 @@ body {
 #card:hover .contentBox .buy {
   top: 0;
   opacity: 1;
+}
+
+#card a{
+  text-decoration: none;
+  color: black;
+}
+#card a:hover{
+  text-decoration: underline;
 }
 
 .mouse {

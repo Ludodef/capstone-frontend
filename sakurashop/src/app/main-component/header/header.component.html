@@ -12,10 +12,10 @@
       <li><a class="nav-link px-2 text-white" routerLink="/contatti">Contatti</a></li>
     </ul>
     <div class="d-flex row justify-content-center align-items-center">
-  <div *ngIf="isUserLoggedIn">
+  <div *ngIf="isUserLoggedIn" class="search-group">
 
-      <input type="search" class="form-control form-control-light text-bg-light" placeholder="Cerca il titolo" aria-label="Search" [(ngModel)]="titolo">
-      <button class=" btn btn-light" (click)="searchLibro()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+      <input type="search" class="form-control form-control-light text-bg-light searchbar" placeholder="Cerca il titolo" aria-label="Search" [(ngModel)]="titolo"  (input)="onSearch($event)">
+      <button class=" btn btn-light searchbar-button" (click)="searchLibro()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
       </svg></button>
 
@@ -34,11 +34,12 @@
   </div>
   </div>
 
-  <div *ngIf="libroRicercato && libroRicercato.length > 0" class="search-results">
+  <div *ngIf="libroRicercato && libroRicercato.length > 0 && showResults" class="search-results">
+    <span id="closeBtn" class="close-btn" (click)="closeSearchResults()">&times;</span>
     <h5>Risultati della ricerca:</h5>
     <ul>
       <li *ngFor="let libro of libroRicercato">
-        <strong>{{ libro.titolo }}</strong> - {{ libro.autore }}
+        <a [routerLink]="['/libri/dettaglio', libro.id]"><strong>{{ libro.titolo }}</strong> - {{ libro.autore }}</a>
       </li>
     </ul>
   </div>
