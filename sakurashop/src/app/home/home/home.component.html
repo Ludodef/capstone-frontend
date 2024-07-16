@@ -1,1 +1,35 @@
-<p>home works!</p>
+<div class="px-4 py-5 mb-5 text-center sfondo">
+  <img class="d-block mx-auto mb-4" src="https://res.cloudinary.com/dfm9lzhxy/image/upload/v1720274936/Default_A_whimsical_logo_of_SakuraShop_crafted_in_a_mix_of_dig_2-removebg-preview_y1bfi1.png" alt="" width="100" height="100">
+  <h1 class="display-5 fw-bold">SakuraShop</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead text-white">"Chi non legge, a 70 anni avrà vissuto una sola vita: la propria!
+      Chi legge avrà vissuto 5000 anni: c’era quando Caino uccise Abele, quando Renzo sposò Lucia, quando Leopardi ammirava l’infinito…
+      perché la lettura è una immortalità all’indietro.”</p>
+      <p class="lead fw-bold">-Umberto Eco</p>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+
+      <button routerLink="/libri" type="button" class="btn btn-outline-primary btn-lg px-4">Acquista</button>
+    </div>
+  </div>
+</div>
+
+<div>
+  <h3>Ecco alcuni libri che potrebbero interessarti:</h3>
+<div class="container">
+<div class="row gap-2">
+  <div id="card" *ngFor="let libro of randomBooks">
+
+    <div class="imgBox">
+      <img src={{libro.immagine}} class="mouse">
+    </div>
+
+    <div class="contentBox">
+      <h3 class="text-center"><a [routerLink]="['/libri/dettaglio', libro.id]">{{libro.titolo}}</a></h3>
+      <h2 class="price">{{libro.prezzo}} €</h2>
+    </div>
+
+</div>
+<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+<button routerLink="/libri" type="button" class="btn btn-primary btn-lg px-4">Scopri altri libri</button>
+</div>
+</div>

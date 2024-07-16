@@ -29,7 +29,8 @@ export class CarrelloComponent {
 
   clearCarrello():void{
     this.carrelloSvc.clearCarrello();
-    this.carrello = []
+    this.carrello = [];
+    this.totale = 0
     }
 
 
@@ -40,7 +41,8 @@ export class CarrelloComponent {
         this.librisvc.updateLibroQuantity(book.id , newQuantity).subscribe(updatedProduct => {
           this.statoLibroSvc.updateLibroQuantity(book.id , updatedProduct.quantita)
         });
-        this.carrello = []
+        this.carrello = [];
+        this.totale = 0;
       })
     }
 }
